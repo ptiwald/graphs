@@ -1,5 +1,4 @@
-#include <iostream>
-#include "graphs.h"
+#include "graphs.hpp"
 
 //====================
 //functions of class graph_point
@@ -9,13 +8,13 @@ void graph_point::add_edge(int to, int cost){
   costTO.push_back(cost);
 }
 
-graph::graph_point(int n) {name = n; connectedTO.clear(); costTO.clear();} //constr. for a node "n" without edges
-void graph::set_name(int n) {name = n;}
-void graph::add_edge(int to, int cost);
-int graph::get_name() {return name;}
-int graph::get_degree() {return connectedTO.size();} //get number of edges
-int graph::get_connectedPointName(int n) {return connectedTO.at(n);} //get connected point n
-int graph::get_costToPoint(int n) {return costTO.at(n);} //get length/cost to connected point n
+graph_point::graph_point(int n) {name = n; connectedTO.clear(); costTO.clear();} //constr. for a node "n" without edges
+void graph_point::set_name(int n) {name = n;}
+void graph_point::add_edge(int to, int cost);
+int graph_point::get_name() {return name;}
+int graph_point::get_degree() {return connectedTO.size();} //get number of edges
+int graph_point::get_connectedPointName(int n) {return connectedTO.at(n);} //get connected point n
+int graph_point::get_costToPoint(int n) {return costTO.at(n);} //get length/cost to connected point n
 
 //====================
 //functions of class graph
@@ -23,24 +22,12 @@ int graph::get_costToPoint(int n) {return costTO.at(n);} //get length/cost to co
 graph::graph(){my_graph.clear();} // default constructor
   // constr. for creating a random graph with Nnodes points, a density dens,
   // and a randomly chosen edge length between costMin and costMax
-graph::graph(int Nnodes, float dens, int costMin, int costMax);
-graph::graph(string filename); //constructor: reads graph from file
 void graph::add_point(graph_point p){my_graph.push_back(p);} // add point with edges to graph
 void graph::add_point_wo_edges(int name) {graph_point p(name); my_graph.push_back(p);} // add edgeless point to graph
-void graph::add_undirected_edge(int from, int to, int cost);
-void graph::add_directed_edge(int from, int to, int cost);
 int graph::get_numOfPts(){return my_graph.size();}
 int graph::get_nameOfP(int i){return my_graph[i].get_name();}
 int graph::get_degreeOfP(int i){return my_graph[i].get_degree();}
-int graph::get_numOfEdges_undirectedGraph();
 graph_point graph::get_gpByIndex(int i){return my_graph[i];} // returns the graph point "i"
-  // Dijkstra's algorithm to find shortest path from start to end
-  // it returns the shortest path
-path graph::find_shortest_Path(int start_point, int end_point);
-  // Prim's algorithm to find the minimum spanning tree
-  // it returns the list of edges building up the tree
-path_list graph::find_min_spanning_tree(int start_point);
-
 
 //class graph:-----------------------------------
 // constr. for creating a random graph with Nnodes points, a density dens,
@@ -153,7 +140,7 @@ path_list graph::find_min_spanning_tree(int start_point) {
   //initialize closed set add the start_point to closed_set:
   { graph_point gp;
     gp = get_gpByIndex(start_point);
-    path p(gp); // path p consists of the single point start_point
+    path p(gp.get_name()); // path p consists of the single point start_point
     closed_set.add_path2pathlist(p);
     //at the end of the algorithm this "path" needs to be removed again from the closed_set!
   }

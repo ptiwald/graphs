@@ -37,6 +37,7 @@ private:
 // declare class graph
 class graph{
 public:
+  graph();
   graph(int Nnodes, float dens, int costMin, int costMax);
   graph(string filename);
   void add_point(graph_point p);
