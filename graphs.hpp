@@ -9,9 +9,12 @@
 
 //====================
 //included dependencies
+#include<iostream>
 #include<vector>
+#include<cstdlib>
+#include<ctime>
 #include<string>
-#include "paths.h"
+#include "paths.hpp"
 
 //====================
 // declare class graph point
@@ -26,8 +29,8 @@ public:
   int get_costToPoint(int n);
 private:
   int name;
-  vector <int> connectedTO;
-  vector <int> costTO;  
+  std::vector <int> connectedTO;
+  std::vector <int> costTO;  
 };
 
 //====================
@@ -54,7 +57,8 @@ public:
 
 //properties of graph
 private:
-  vector <graph_point> my_graph;
+  std::vector <graph_point> my_graph;
   void checkAdd_path2OpenSet(path_list &open_set, path_list closed_set, path p_new);
 };
 
+#endif
