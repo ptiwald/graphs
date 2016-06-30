@@ -53,10 +53,10 @@ graph::graph(int Nnodes, float dens, int costMin, int costMax){
 }
 
 //constructor that reads graph from file
-graph::graph(string filename){
-  ifstream graph_file(filename);
-  istream_iterator<int> start(graph_file), eos;
-  vector<int> values(start,eos);
+graph::graph(std::string filename){
+  std::ifstream graph_file(filename);
+  std::istream_iterator<int> start(graph_file), eos;
+  std::vector<int> values(start,eos);
  
   int Nnodes = values[0];
   for (int i=0;i<Nnodes;i++)
@@ -79,8 +79,8 @@ graph::graph(string filename){
     }
   }
     
-  std::cout << "read graph from file:" << filename << endl;
-  std::cout << "graph has " << get_numOfPts() << " nodes and " << get_numOfEdges_undirectedGraph() << " edges." << endl;
+  std::cout << "read graph from file:" << filename << std::endl;
+  std::cout << "graph has " << get_numOfPts() << " nodes and " << get_numOfEdges_undirectedGraph() << " edges." << std::endl;
 }
 
 int graph::get_numOfEdges_undirectedGraph()
@@ -163,7 +163,7 @@ path_list graph::find_min_spanning_tree(int start_point) {
       // run through all neighbors of gp
       // for every neighbor: create a new connection p_new
       for (int i=0;i<gp.get_degree();i++){
-	path p_new(gp);
+	path p_new(gp.get_name());
 	neighbor_index = gp.get_connectedPointName(i);
 	cost = gp.get_costToPoint(i);
 	p_new.add_graphPoint2Path(neighbor_index,cost);
@@ -177,8 +177,8 @@ path_list graph::find_min_spanning_tree(int start_point) {
     
     //SECOND: abort if open set is empty after expansion: no more new neighbors
     if (open_set.get_NumOfPaths() == 0 && closed_set.get_NumOfPaths() < get_numOfPts() ) {
-      std::cout << "The graph is disconnected!" << endl;
-      std::cout << "The program will stop now!" << endl;
+      std::cout << "The graph is disconnected!" << std::endl;
+      std::cout << "The program will stop now!" << std::endl;
       exit( 2 );
     }
     
@@ -209,7 +209,7 @@ path graph::find_shortest_Path(int start_point, int end_point) {
   path_list closed_set, open_set;
   
   //initialize closed set
-  { path p(get_gpByIndex(start_point));    
+  { path p(start_point);    
     closed_set.add_path2pathlist(p);
   }
 
@@ -247,8 +247,8 @@ path graph::find_shortest_Path(int start_point, int end_point) {
     
     //SECOND: abort if open set is empty after expansion: no more new neighbors
     if (open_set.get_NumOfPaths() == 0) {
-      std::cout << "The point of destination is not connected to the starting point!" << endl;
-      std::cout << "The program will stop now!" << endl;
+      std::cout << "The point of destination is not connected to the starting point!" << std::endl;
+      std::cout << "The program will stop now!" << std::endl;
       exit( 2 );
     }
     

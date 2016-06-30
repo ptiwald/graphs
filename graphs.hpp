@@ -9,17 +9,15 @@
 
 //====================
 //included dependencies
-#include<iostream>
-#include<vector>
-#include<cstdlib>
-#include<ctime>
-#include<string>
 #include "paths.hpp"
+#include<fstream>
+#include<iterator>
 
 //====================
 // declare class graph point
 class graph_point{
 public:
+  graph_point();
   graph_point(int n);
   void set_name(int n);
   void add_edge(int to, int cost);
@@ -39,7 +37,7 @@ class graph{
 public:
   graph();
   graph(int Nnodes, float dens, int costMin, int costMax);
-  graph(string filename);
+  graph(std::string filename);
   void add_point(graph_point p);
   void add_point_wo_edges(int name);
   void add_undirected_edge(int from, int to, int cost);

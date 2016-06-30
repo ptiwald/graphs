@@ -10,9 +10,6 @@
 // included dependencies
 #include<iostream>
 #include<vector>
-#include<fstream>
-#include<string>
-#include<iterator>
 
 // define class path_point--------------------------------------------------------
 class path_point{
