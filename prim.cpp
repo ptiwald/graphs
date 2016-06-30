@@ -13,15 +13,15 @@ int main() {
 
   //  graph mygraph(graph_size,dens,length_low,length_high); //initialize graph (randomly)
 
-  cout << endl;
+  std::cout << std::endl;
   graph graph_from_file("test_graph3.txt");
   min_spanning_tree = graph_from_file.find_min_spanning_tree(start_point);
   min_spanning_tree.print_pathlist();
-  cout << "The MST value for this graph reads " << min_spanning_tree.sum_CostsOfPaths() << endl;
+  std::cout << "The MST value for this graph reads " << min_spanning_tree.sum_CostsOfPaths() << std::endl;
   shortest_path = graph_from_file.find_shortest_Path(start_point, end_point);
-  cout << "The shortest path from node " << start_point << " to node " << end_point << " reads:" << endl;
+  std::cout << "The shortest path from node " << start_point << " to node " << end_point << " reads:" << std::endl;
   shortest_path.print_path();
-  cout << endl;
+  std::cout << std::endl;
   
   return 0;
 }

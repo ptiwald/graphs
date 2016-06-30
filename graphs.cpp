@@ -8,6 +8,7 @@ void graph_point::add_edge(int to, int cost){
   costTO.push_back(cost);
 }
 
+graph_point::graph_point() {connectedTO.clear(); costTO.clear(); name=99999999;}
 graph_point::graph_point(int n) {name = n; connectedTO.clear(); costTO.clear();} //constr. for a node "n" without edges
 void graph_point::set_name(int n) {name = n;}
 void graph_point::add_edge(int to, int cost);
